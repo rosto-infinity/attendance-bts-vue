@@ -46,6 +46,8 @@
     </div>
   </form>
 </div>
+
+
   <div class="min-h-screen bg-gray-50 p-4 lg:p-8">
     <div class="max-w-7xl mx-auto">
       <div class="mb-8">
@@ -200,6 +202,9 @@ const data = ref<AttendanceRecord[]>([
   { id: 18, date: '2025-06-12', fullName: 'Rania Perrot', email: 'rania.perrot@email.com', arrivalTime: '08:00', departureTime: '17:00', lateMinutes: 0, isAbsent: false, isLate: false },
   { id: 19, date: '2025-06-12', fullName: 'Sami Lefort', email: 'sami.lefort@email.com', arrivalTime: '', departureTime: '', lateMinutes: 0, isAbsent: true, isLate: false },
   { id: 20, date: '2025-06-12', fullName: 'Théo Blanchard', email: 'theo.blanchard@email.com', arrivalTime: '08:04', departureTime: '17:00', lateMinutes: 4, isAbsent: false, isLate: true },
+  { id: 21, date: '2025-07-12', fullName: 'Théo Blanchard', email: 'theo.blanchard@email.com', arrivalTime: '08:04', departureTime: '17:00', lateMinutes: 4, isAbsent: false, isLate: true },
+  { id: 22, date: '2025-08-12', fullName: 'Théo Blanchard', email: 'theo.blanchard@email.com', arrivalTime: '08:04', departureTime: '17:00', lateMinutes: 4, isAbsent: false, isLate: true },
+  { id: 23, date: '2025-09-12', fullName: 'Théo Blanchard', email: 'theo.blanchard@email.com', arrivalTime: '08:04', departureTime: '17:00', lateMinutes: 4, isAbsent: false, isLate: true },
 ]);
 
 interface AttendanceRecord {
