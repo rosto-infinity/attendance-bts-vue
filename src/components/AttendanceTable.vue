@@ -64,11 +64,55 @@
       </div>
       
 
+     <!-- Section des statistiques avec intégration des icônes -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <StatCard title="Total Stagiaires" value="0" icon="Users" />
-        <StatCard title="Présents" value="0" icon="Calendar" />
-        <StatCard title="Absents" value="0" icon="Users" />
-        <StatCard title="En Retard" value="0" icon="Clock" />
+        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
+          <div class="flex items-center gap-3">
+            <div class="p-3 rounded-lg bg-blue-50 text-blue-600">
+              <Users class="w-5 h-5" />
+            </div>
+            <div>
+              <p class="text-sm text-gray-500">Total Stagiaires</p>
+              <p class="text-2xl font-bold">{{ filteredAndSortedData.length }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
+          <div class="flex items-center gap-3">
+            <div class="p-3 rounded-lg bg-green-50 text-green-600">
+              <Calendar class="w-5 h-5" />
+            </div>
+            <div>
+              <p class="text-sm text-gray-500">Présents</p>
+              <p class="text-2xl font-bold">{{ presentCount }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
+          <div class="flex items-center gap-3">
+            <div class="p-3 rounded-lg bg-red-50 text-red-600">
+              <Users class="w-5 h-5" />
+            </div>
+            <div>
+              <p class="text-sm text-gray-500">Absents</p>
+              <p class="text-2xl font-bold">{{ absentCount }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
+          <div class="flex items-center gap-3">
+            <div class="p-3 rounded-lg bg-orange-50 text-orange-600">
+              <Clock class="w-5 h-5" />
+            </div>
+            <div>
+              <p class="text-sm text-gray-500">En Retard</p>
+              <p class="text-2xl font-bold">{{ lateCount }}</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mb-6">
@@ -173,6 +217,7 @@
           </div>
         </div>
       </div>
+      
     </div>
   </div>
 </template>
@@ -180,6 +225,20 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { ChevronLeft, ChevronRight, Download, Filter, Search, Users, Calendar, Clock } from 'lucide-vue-next';
+
+// Calcul des statistiques
+const presentCount = computed(() => 
+  data.value.filter(record => !record.isAbsent && !record.isLate).length
+);
+
+const absentCount = computed(() => 
+  data.value.filter(record => record.isAbsent).length
+);
+
+const lateCount = computed(() => 
+  data.value.filter(record => record.isLate).length
+);
+
 
 const data = ref<AttendanceRecord[]>([
   { id: 1, date: '2025-06-12', fullName: 'Alice Dupont', email: 'alice.dupont@email.com', arrivalTime: '08:05', departureTime: '17:00', lateMinutes: 5, isAbsent: false, isLate: true },
